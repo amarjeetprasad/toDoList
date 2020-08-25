@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1><%= list %> </h1>
+    <% Items.forEach(item=>{ %>
+        <form action="/delete" method="POST">
+            <input type="checkbox" name="itemId" value="<%= item._id %>" onchange="this.form.submit()">
+            <p><%= item.name %></p>
+            <input type="hidden" name="listName" value="<%=list%>"></input>
+        </form>
+   <% }) %>
+    <form action="/" method="POST">
+        <input type="text" placeholder="Add New Item" name="item" autocomplete="off">
+        <button type="submit" name="list" value="<%= list %>">+</button>
+    </form>
+</body>
+</html>
